@@ -8,7 +8,7 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: 
+  more_info:
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -24,8 +24,8 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am studying Cognitive Science, specializing in Artificial Cognition at Osnabrück University. Previously I obtained my Bachelor's in Chemical Engineering from Indian Institute of Technology Kharagpur, where I wrote my thesis with the Computer Science and Engineering Department. 
+I am studying Cognitive Science, specializing in Artificial Cognition at Osnabrück University. Previously I obtained my Bachelor's in Chemical Engineering from Indian Institute of Technology Kharagpur, where I wrote my thesis with the Computer Science and Engineering Department.
 
-I am broadly interested in working towards a more Dynamical Systems understanding of Machine Learning. Having worked on Reinforcement Learning projects extensively in the past, where Dynamics and Control are more intuitive, I wonder how these concepts can be carried over to other fields of Machine Learning. Recent advances in State Space Modelling that study latent dynamics also excite me. 
+I am broadly interested in working towards a more Dynamical Systems understanding of Machine Learning. Having worked on Reinforcement Learning projects extensively in the past, where Dynamics and Control are more intuitive, I wonder how these concepts can be carried over to other fields of Machine Learning. Recent advances in State Space Modelling that study latent dynamics also excite me.
 
 I hope to explore and share more of my scientific journey on this page as I go through my Graduate studies.
