@@ -3,9 +3,7 @@ layout: stream
 permalink: /cinema/
 title: Cinema
 collection: cinema
-description: Reviews, impressions of movements and directors, and — in time — my own work.
+description: Reviews, impressions of movements and directors.
 ---
 
-Watching is its own discipline. Here I keep reviews of individual films,
-longer pieces on movements and directors I keep returning to, and eventually
-notes on things I'm trying to make myself.
+All my film reviews reside on <a href="https://letterboxd.com/scharnam/">letterboxd</a>. Here (will) sit my bigger pieces, things I notice on scales larger than a single film. Current posts are placeholder, not written by me.

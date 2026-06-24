@@ -5,7 +5,7 @@ description: A first time abroad, a Schengen visa, and the slow realization that
 tags: [philosophy]
 ---
 
-## 1 · Introduction
+## Introduction
 
 I am in Liège, Belgium, for the summers (Indian summers, May–July) for my
 internship at ULiège. I had to get a short-term Schengen visa to get here. Now,
@@ -16,9 +16,7 @@ Paris, Milan, Berlin etc. topped the list.
 
 A lot has changed since then, and this is the documentation of that.
 
----
-
-## 2 · About me
+## About me
 
 Not to disclose a lot, but to provide relevant context, this is an essential
 section. Whenever I want to do anything, I have this huge tendency to push the
@@ -32,9 +30,7 @@ planning when eventually, in this undeterministic environment, no plan is ever
 accurate (which ironically induces more stress, but more about that on a
 different post).
 
----
-
-## 3 · Where is this guy headed?
+## Where is this guy headed?
 
 _(I have no idea either, honestly.)_
 
@@ -49,7 +45,7 @@ save.
 Honestly, I was almost ready with my yes, because there was no reason to say no.
 But two things happened that day.
 
-### 3.1 · Thing 1: Belgian influence
+### Thing 1: Belgian influence
 
 Google, having identified my interests, shows me posts related to mountain
 biking. This is normal (Should it be, though? Post idea: "Normalization of
@@ -74,7 +70,7 @@ of hiking routes in Nonceveux, Liège. Thirty kilometers south of where I work.
 
 And my mind was almost made.
 
-### 3.2 · Thing 2: SurfCouching
+### Thing 2: SurfCouching
 
 Finding accommodation has been a pain here. Either it's too costly or it's just
 bad. Usually, it's costly and bad.
@@ -95,9 +91,7 @@ the idea of meeting interesting new travelers."
 
 Convenient timing.
 
----
-
-## 4 · Cheap thrills and a long checklist
+## Cheap thrills and a long checklist
 
 Going off to Amsterdam for four days, living in a hotel, visiting the cafe to get
 the greens, and, and… And what?
@@ -125,9 +119,7 @@ _limited_ sources I've come across.
 >
 > Boredom.
 
----
-
-## 5 · So, where _is_ this guy headed?
+## So, where _is_ this guy headed?
 
 _(I seriously have no idea, but it's not Amsterdam.)_
 
@@ -143,17 +135,13 @@ Whatever it is, it _feels_ right.
 
 Lately, that is <u>all</u> I've been looking for.
 
----
-
 <p style="text-align: center">
   <strong>EPILOGUE</strong><br />
   Written after the weekend<br />
   <strong>"Pink Floyd on the stereo"</strong>
 </p>
 
----
-
-## 6 · Where did this guy go?
+## Where did this guy go?
 
 Munich.
 
@@ -178,17 +166,17 @@ next day's bus, found the sweetest host on CouchSurfing and headed there.
 
 Well, at least Munich was fun.
 
-<figure>
-  <img src="{{ '/assets/img/travel/sweetest-host.jpeg' | relative_url }}" alt="The sweetest host" />
-  <figcaption>The sweetest host</figcaption>
-</figure>
-
-<figure>
-  <img src="{{ '/assets/img/travel/beer-pigeons.jpg' | relative_url }}" alt="Pigeons over a beer" />
-  <figcaption>Beer gives you wings</figcaption>
-</figure>
-
-<figure>
-  <img src="{{ '/assets/img/travel/roger-at-the-bar.jpeg' | relative_url }}" alt="Roger Waters on a screen at the bar" />
-  <figcaption>Does everybody at the bar feel pain? Yeah, sure. They do.</figcaption>
-</figure>
+<div class="img-grid">
+  <figure>
+    <img src="{{ '/assets/img/travel/sweetest-host.jpeg' | relative_url }}" alt="The sweetest host" />
+    <figcaption>The sweetest host</figcaption>
+  </figure>
+  <figure>
+    <img src="{{ '/assets/img/travel/beer-pigeons.jpg' | relative_url }}" alt="Pigeons over a beer" />
+    <figcaption>Beer gives you wings</figcaption>
+  </figure>
+  <figure class="img-grid-wide">
+    <img src="{{ '/assets/img/travel/roger-at-the-bar.jpeg' | relative_url }}" alt="Roger Waters on a screen at the bar" />
+    <figcaption>Does everybody at the bar feel pain? Yeah, sure. They do.</figcaption>
+  </figure>
+</div>

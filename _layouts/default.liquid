@@ -52,7 +52,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+Devanagari:wght@400;500;600&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="{{ '/assets/css/minimal.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/minimal.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <link rel="alternate" type="application/atom+xml" title="{{ site_name }}" href="{{ '/feed.xml' | relative_url }}">
 
     {% if page.math %}

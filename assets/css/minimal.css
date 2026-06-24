@@ -22,6 +22,7 @@
   --rule: #e2dccd;
   --accent: #9a3b2e;
   --accent-soft: rgba(154, 59, 46, 0.1);
+  --quote-tint: rgba(154, 59, 46, 0.04);
 }
 
 [data-theme="dark"] {
@@ -33,6 +34,7 @@
   --rule: #2c2a21;
   --accent: #d27c61;
   --accent-soft: rgba(210, 124, 97, 0.16);
+  --quote-tint: rgba(210, 124, 97, 0.06);
 }
 
 /* ---------- reset-ish ---------- */
@@ -117,19 +119,10 @@ img {
     right: var(--border-inset);
   }
 }
-/* per-section borders — width pinned to each scan's native pixel width */
-body.stream-research {
-  --border-art: url("/assets/img/border/research.jpg");
-  --border-w: 120px; /* native 120px */
-}
-body.stream-cinema {
-  --border-art: url("/assets/img/border/cinema.jpg");
-  --border-w: 75px; /* native 75px — narrowest scan */
-}
-body.stream-misc {
-  --border-art: url("/assets/img/border/misc.jpg");
-  --border-w: 105px; /* native 105px */
-}
+/* Uniform border across all streams: one crisp source (default.jpg is 142px
+   native, so 120px is a clean downscale). Per-stream scans varied in width
+   (cinema was only 75px) which made sections look inconsistent, so they all
+   share the default strip now. */
 
 /* ---------- home: full-bleed tapestry background + dark text panels ---------- */
 body.home {
@@ -452,10 +445,6 @@ body.home .door-desc {
   color: var(--muted);
   border: 1px solid var(--rule);
 }
-.stream-cinema {
-  color: var(--accent);
-  border-color: var(--accent-soft);
-}
 .index-title {
   flex: 1;
   font-family: var(--serif-display);
@@ -544,8 +533,8 @@ body.home .door-desc {
   margin: 0 0 0.75rem;
 }
 .page-lede {
-  font-size: 1.2rem;
-  color: var(--ink-soft);
+  font-size: 1.25rem;
+  color: var(--accent);
   font-style: italic;
   margin: 0 0 1rem;
 }
@@ -583,9 +572,9 @@ body.home .door-desc {
 }
 .entry-title {
   font-family: var(--serif-display);
-  font-weight: 500;
-  font-size: clamp(2rem, 5.5vw, 3.1rem);
-  line-height: 1.05;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1.04;
   letter-spacing: -0.025em;
   margin: 0;
 }
@@ -601,7 +590,7 @@ body.home .door-desc {
   margin: 0.9rem 0 0;
   font-size: 1.2rem;
   font-style: italic;
-  color: var(--ink-soft);
+  color: var(--accent);
 }
 
 .entry-foot {
@@ -650,26 +639,44 @@ body.home .door-desc {
 .prose h3,
 .prose h4 {
   font-family: var(--serif-display);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  margin: 2.5rem 0 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+  /* generous space above, tight to the text below — section breaks read clearly */
+  margin: 3rem 0 0.55rem;
 }
 .prose h2 {
-  font-size: 1.6rem;
+  font-size: 1.95rem;
 }
 .prose h3 {
-  font-size: 1.3rem;
+  font-size: 1.45rem;
 }
+/* lowest level: italic run-in subhead so it stays distinct from body */
 .prose h4 {
-  font-size: 1.1rem;
+  font-size: 1.18rem;
+  font-style: italic;
+}
+.prose > h2:first-child,
+.prose > h3:first-child {
+  margin-top: 0;
 }
 .prose blockquote {
-  margin: 1.8rem 0;
-  padding-left: 1.4rem;
+  margin: 2.2rem 0;
+  padding: 1.1rem 1.5rem;
+  background: var(--quote-tint);
   border-left: 2px solid var(--accent);
+  border-radius: 5px;
   font-style: italic;
-  color: var(--ink-soft);
+  color: var(--ink);
+  /* barely lifted — present, not loud */
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.07);
+}
+.prose blockquote > :first-child {
+  margin-top: 0;
+}
+.prose blockquote > :last-child {
+  margin-bottom: 0;
 }
 .prose hr {
   border: none;
@@ -712,6 +719,34 @@ body.home .door-desc {
 }
 .prose figure {
   margin: 1.8rem 0;
+}
+/* two images side-by-side (left/right), third centered below */
+.prose .img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+  align-items: start;
+  margin: 1.8rem 0;
+}
+.prose .img-grid figure {
+  margin: 0;
+}
+.prose .img-grid img {
+  width: 100%;
+  margin: 0;
+}
+.prose .img-grid .img-grid-wide {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 66%;
+}
+@media (max-width: 32rem) {
+  .prose .img-grid {
+    grid-template-columns: 1fr;
+  }
+  .prose .img-grid .img-grid-wide {
+    max-width: 100%;
+  }
 }
 .prose figcaption {
   font-size: 0.85rem;

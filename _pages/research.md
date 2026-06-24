@@ -3,10 +3,7 @@ layout: stream
 permalink: /research/
 title: Research
 collection: research
-description: Notes written to understand — machine learning, dynamical systems, and whatever else won't leave me alone.
+description: Notes written to understand — machine learning, dynamical systems, and whatever else.
 ---
 
-I write these mostly for myself: the fastest way I know to find the holes in my
-own understanding is to try to explain something cleanly. Topics drift around
-reinforcement learning, state-space models, and a slow attempt to see machine
-learning through the lens of dynamical systems.
+Currently working on understanding retargeting pipelines in motion capture and robotics research. Will write posts as I go along. Main subjects followed here will be Dynamical Systems and Control, Reinforcement Learning and Theoretical AI/Representation Learning more broadly. Current posts are placeholder, not written by me.
