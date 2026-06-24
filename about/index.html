@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    
+    
+      <title>
+        About
+        —
+        Yash Saraswat
+      </title>
+    
+    <meta name="description" content="Graduate student in Cognitive Science at Osnabrück University.">
+    <meta name="author" content="Yash Saraswat">
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>"
+    >
+
+    <!-- Theme: set before paint to avoid flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+Devanagari:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/assets/css/minimal.css">
+    <link rel="alternate" type="application/atom+xml" title="Yash Saraswat" href="/feed.xml">
+
+    
+  </head>
+
+  <body class="">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-head">
+      <a class="brand" href="/" aria-label="Yash Saraswat — home">
+        <span class="brand-deva" lang="hi">घर</span>
+        <span class="brand-roman">Ghar</span>
+      </a>
+      <nav class="site-nav">
+        <a href="/research/">Research</a>
+        <a href="/cinema/">Cinema</a>
+        <a href="/misc/">Misc</a>
+        <a href="/about/">About</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span aria-hidden="true">◐</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main" class="container"><article class="page">
+  <header class="page-head">
+    <h1 class="page-title">About</h1>
+    
+      <p class="page-lede">Graduate student in Cognitive Science at Osnabrück University.</p>
+    
+  </header>
+  <div class="prose page-body"><p>I’m studying Cognitive Science, specializing in Artificial Cognition, at
+Osnabrück University. Before that I read Chemical Engineering at IIT Kharagpur,
+where I wrote my thesis with the Computer Science and Engineering department.</p>
+
+<p>I’m broadly interested in a more <strong>dynamical-systems</strong> understanding of machine
+learning. Having spent a lot of time on reinforcement learning — where dynamics
+and control feel intuitive — I keep wondering how those ideas carry over to the
+rest of the field. Recent work on state-space models and latent dynamics is the
+kind of thing that pulls me in.</p>
+
+<p>Away from research I watch a lot of film, which is the other half of this site.
+I think the two habits are related: both are about paying close, patient
+attention to how something actually moves.</p>
+
+<p>You can find me on
+<a href="https://github.com/yashsrswat">GitHub</a>,
+or reach me by <a href="mailto:yashsaraswat3701@gmail.com">email</a>.</p>
+</div>
+</article>
+</main>
+
+    <footer class="site-foot">
+      <div class="foot-inner">
+        <span
+          >© 2026
+          Yash Saraswat</span>
+        <span class="foot-note">Set in Fraunces &amp; Newsreader. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>, hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var cur = document.documentElement.getAttribute('data-theme');
+          var next = cur === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try {
+            localStorage.setItem('theme', next);
+          } catch (e) {}
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    
+    
+      <title>
+        State-space models, read as control theory in disguise
+        —
+        Yash Saraswat
+      </title>
+    
+    <meta name="description" content="Why the recent wave of state-space sequence models feels so familiar if you've spent time around dynamics and control.">
+    <meta name="author" content="Yash Saraswat">
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>"
+    >
+
+    <!-- Theme: set before paint to avoid flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+Devanagari:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/assets/css/minimal.css">
+    <link rel="alternate" type="application/atom+xml" title="Yash Saraswat" href="/feed.xml">
+
+    
+      <script>
+        window.MathJax = {
+          tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+          options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] },
+        };
+      </script>
+      <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    
+  </head>
+
+  <body class="stream-research">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-head">
+      <a class="brand" href="/" aria-label="Yash Saraswat — home">
+        <span class="brand-deva" lang="hi">घर</span>
+        <span class="brand-roman">Ghar</span>
+      </a>
+      <nav class="site-nav">
+        <a href="/research/">Research</a>
+        <a href="/cinema/">Cinema</a>
+        <a href="/misc/">Misc</a>
+        <a href="/about/">About</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span aria-hidden="true">◐</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main" class="container"><article class="entry">
+  <header class="entry-head">
+    <p class="entry-kicker">
+      <a href="/research/">research</a>
+      <span class="dot">·</span><time datetime="2026-05-18T00:00:00+00:00">May 18, 2026</time>
+    </p>
+    <h1 class="entry-title">State-space models, read as control theory in disguise</h1>
+    
+    
+  </header>
+
+  <div class="prose entry-body"><p>The first time I read through a modern state-space sequence model, I had the
+odd feeling of meeting an old acquaintance under a new name. Strip away the
+deep-learning vocabulary and what’s left is a linear dynamical system — a
+hidden state that evolves, an input that nudges it, an output read off through a
+projection. That is, almost verbatim, the object control theory has studied for
+seventy years.</p>
+
+<h2 id="the-same-equations-different-priorities">The same equations, different priorities</h2>
+
+<p>A continuous linear system is usually written as</p>
+
+<div class="kdmath">$$
+\dot{x}(t) = A\,x(t) + B\,u(t), \qquad y(t) = C\,x(t) + D\,u(t).
+$$</div>
+
+<p>Control theory cares about <em>stability</em> and <em>controllability</em>: where do the
+eigenvalues of $A$ sit, and can the input $u$ steer the state anywhere we like?
+Sequence modelling inherits the same matrices but asks a different question —
+can this thing <em>remember</em>? A token from a thousand steps ago has to survive the
+repeated action of $A$ without exploding or decaying to nothing. That is an
+eigenvalue question wearing a memory costume.</p>
+
+<blockquote>
+  <p>The interesting move isn’t the architecture. It’s deciding that <em>memory</em> and
+<em>stability</em> are the same constraint viewed from two ends of the timeline.</p>
+</blockquote>
+
+<h2 id="why-this-framing-earns-its-keep">Why this framing earns its keep</h2>
+
+<p>Once you accept the dictionary, a lot of design choices stop looking like
+hyperparameter folklore and start looking like consequences:</p>
+
+<ul>
+  <li><strong>Initialization schemes</strong> that keep eigenvalues near the unit circle are just
+the discrete-time version of placing poles for marginal stability.</li>
+  <li><strong>Diagonalizing the recurrence</strong> is the same trick that turns a coupled system
+into independent modes — and it’s what makes the whole thing fast.</li>
+  <li><strong>The decay of a mode</strong> sets, very literally, the timescale over which the
+model can hold information.</li>
+</ul>
+
+<p>None of this tells you the architecture will work. But it tells you <em>where to
+look</em> when it doesn’t, and that’s most of what a good mental model buys you.</p>
+
+<p>I’ll come back to the discretization step in a later note — the jump from the
+continuous system to the recurrence you actually run is where a surprising
+amount of the behaviour is decided.</p>
+</div>
+
+  <footer class="entry-foot">
+    <a class="back-link" href="/research/">← back to research</a>
+  </footer>
+</article>
+</main>
+
+    <footer class="site-foot">
+      <div class="foot-inner">
+        <span
+          >© 2026
+          Yash Saraswat</span>
+        <span class="foot-note">Set in Fraunces &amp; Newsreader. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>, hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var cur = document.documentElement.getAttribute('data-theme');
+          var next = cur === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try {
+            localStorage.setItem('theme', next);
+          } catch (e) {}
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,737 @@
+/* =============================================================
+   Minimal editorial theme — Yash Saraswat
+   Two practices: research & cinema. Words, whitespace, good type.
+   ============================================================= */
+
+:root {
+  --serif-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --serif-body: "Newsreader", Georgia, "Times New Roman", serif;
+  --serif-deva: "Noto Serif Devanagari", "Fraunces", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --measure: 50rem;
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+[data-theme="light"] {
+  --bg: #f5f2ea;
+  --bg-2: #efeae0;
+  --ink: #1d1b16;
+  --ink-soft: #494640;
+  --muted: #877f6f;
+  --rule: #e2dccd;
+  --accent: #9a3b2e;
+  --accent-soft: rgba(154, 59, 46, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #15140f;
+  --bg-2: #1d1b15;
+  --ink: #e9e4d8;
+  --ink-soft: #c2bcae;
+  --muted: #8a8473;
+  --rule: #2c2a21;
+  --accent: #d27c61;
+  --accent-soft: rgba(210, 124, 97, 0.16);
+}
+
+/* ---------- reset-ish ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  position: relative;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif-body);
+  font-size: 1.15rem;
+  line-height: 1.72;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--bg-2);
+  padding: 0.5rem 0.75rem;
+  z-index: 10;
+}
+
+/* ---------- illuminated side borders (manuscript frame) ----------
+   Vertical ornament strips framing the page, like an old book. They are
+   absolutely positioned over the full document height so they scroll WITH
+   the text rather than staying pinned to the viewport.
+   The scans are low-resolution (native widths 75–142px), so --border-w is
+   set per stream to each strip's native width: rendering at native size (or
+   below) keeps them crisp. Upscaling past native is what caused the blur. */
+:root {
+  --border-art: url("/assets/img/border/default.jpg");
+  --border-w: 120px; /* default.jpg is 142px native → slight downscale, crisp */
+  --border-inset: 0px;
+}
+@media (min-width: 78rem) {
+  body::before,
+  body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: var(--border-w);
+    background-image: var(--border-art);
+    background-repeat: repeat-y;
+    background-position: center top;
+    background-size: var(--border-w) auto;
+    z-index: 5;
+    pointer-events: none;
+  }
+  /* scans are right-side borders (gold rules on the outer edge); flip the
+     left strip so its outer edge sits at the page's left edge */
+  body::before {
+    left: var(--border-inset);
+    transform: scaleX(-1);
+  }
+  body::after {
+    right: var(--border-inset);
+  }
+}
+/* per-section borders — width pinned to each scan's native pixel width */
+body.stream-research {
+  --border-art: url("/assets/img/border/research.jpg");
+  --border-w: 120px; /* native 120px */
+}
+body.stream-cinema {
+  --border-art: url("/assets/img/border/cinema.jpg");
+  --border-w: 75px; /* native 75px — narrowest scan */
+}
+body.stream-misc {
+  --border-art: url("/assets/img/border/misc.jpg");
+  --border-w: 105px; /* native 105px */
+}
+
+/* ---------- home: full-bleed tapestry background + dark text panels ---------- */
+body.home {
+  --home-w: 70rem;
+  --leaf: #f4ecd6; /* aged parchment writing surface */
+  --leaf-ink: #2c2417; /* warm ink */
+  --leaf-soft: #6f6148; /* faded ink */
+  --gold: #b08d3c; /* rule gold */
+  --ribbon: rgba(26, 19, 11, 0.95); /* deep band */
+  --ribbon-text: #efe4c8;
+  background-image: url("/assets/img/border/home-bg.jpg");
+  background-repeat: repeat;
+  background-size: auto 760px;
+  background-attachment: fixed;
+}
+body.home .container {
+  max-width: var(--home-w);
+}
+body.home::before,
+body.home::after {
+  display: none; /* the whole background is the border on home */
+}
+/* header + footer are full-bleed ribbons edge-to-edge over the tapestry */
+body.home .brand,
+body.home .site-nav a,
+body.home .theme-toggle {
+  color: var(--ribbon-text);
+  text-shadow: none;
+}
+body.home .site-nav a:hover {
+  color: #fff;
+}
+body.home .brand-roman {
+  color: var(--ribbon-text);
+  opacity: 0.7;
+}
+body.home .foot-inner {
+  color: var(--ribbon-text);
+}
+body.home .foot-note a {
+  color: var(--ribbon-text);
+}
+body.home .site-head {
+  background: var(--ribbon);
+  border-bottom: 1px solid rgba(176, 141, 60, 0.45);
+}
+body.home .site-foot {
+  background: var(--ribbon);
+  border-top: 1px solid rgba(176, 141, 60, 0.45);
+  margin-top: 0;
+}
+body.home .foot-inner {
+  background: none;
+}
+
+/* content panels = the manuscript's parchment writing surface,
+   inside a thin gold double rule */
+body.home .masthead,
+body.home .intro,
+body.home .doors {
+  background: var(--leaf);
+  color: var(--leaf-ink);
+  padding: 1.8rem 2.1rem;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 3px var(--leaf),
+    inset 0 0 0 4px rgba(176, 141, 60, 0.55),
+    0 10px 30px rgba(0, 0, 0, 0.28);
+  margin-bottom: 1.4rem;
+  max-width: none; /* all three panels share the full column width */
+  width: 100%;
+  box-sizing: border-box;
+}
+body.home .masthead {
+  padding-bottom: 1.5rem;
+}
+body.home .masthead-name {
+  color: var(--leaf-ink);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  margin-bottom: 0.7rem;
+}
+/* illuminated gold annotation on the parchment leaf */
+body.home .masthead-deva {
+  color: var(--gold);
+  font-weight: 600;
+  opacity: 0.92;
+}
+body.home .intro,
+body.home .intro p {
+  color: var(--leaf-ink);
+}
+body.home .intro p {
+  max-width: 56rem; /* keep the prose readable inside the wide leaf */
+}
+body.home .intro a {
+  color: var(--accent);
+}
+body.home .intro strong {
+  color: var(--leaf-ink);
+}
+body.home .doors {
+  border-top: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0.6rem;
+}
+body.home .door {
+  padding: 1.2rem 1.5rem;
+  border-bottom: none;
+  transition: background 0.18s ease;
+}
+body.home .door:hover {
+  background: rgba(176, 141, 60, 0.12);
+}
+body.home .door + .door {
+  border-left: 1px solid rgba(176, 141, 60, 0.32);
+}
+body.home .door-label {
+  color: var(--leaf-ink);
+}
+body.home .door:hover .door-label {
+  color: var(--accent);
+}
+body.home .door-desc {
+  color: var(--leaf-soft);
+}
+@media (max-width: 48rem) {
+  body.home .doors {
+    grid-template-columns: 1fr;
+  }
+  body.home .door + .door {
+    border-left: none;
+    border-top: 1px solid rgba(176, 141, 60, 0.32);
+  }
+}
+
+/* ---------- header / nav ---------- */
+.site-head {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0.85rem var(--gutter);
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand-deva {
+  font-family: var(--serif-deva);
+  font-weight: 500;
+  font-size: 2rem;
+  /* line-height < 1 keeps the line box ≈1.44rem, so the bigger glyph does NOT
+     grow the header band; `top` then slides it downward — the top edge stays
+     roughly put while the bottom drops lower. */
+  line-height: 0.72;
+  letter-spacing: 0;
+  position: relative;
+  top: 0.16rem;
+}
+.brand-roman {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.brand:hover .brand-roman {
+  color: var(--accent);
+}
+.site-nav {
+  display: flex;
+  align-items: baseline;
+  gap: 1.4rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+.site-nav a:hover {
+  color: var(--accent);
+}
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.18s ease;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+}
+
+/* ---------- main container ---------- */
+.container {
+  width: 100%;
+  max-width: 65rem;
+  margin: 0 auto;
+  padding: 3.5rem var(--gutter) 4rem;
+  flex: 1 0 auto;
+}
+
+/* ---------- masthead (home) ---------- */
+.masthead {
+  margin-bottom: 2.5rem;
+}
+.masthead-name {
+  font-family: var(--serif-display);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.6rem;
+}
+
+/* Devanagari rendering of the name, set beside it like a small lowered label */
+.masthead-deva {
+  font-family: var(--serif-deva);
+  font-weight: 500;
+  font-size: 0.34em; /* relative to the large masthead name */
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-left: 0.6rem;
+  position: relative;
+  top: 0.12em; /* sit a touch lower than the name */
+  white-space: nowrap;
+}
+
+.intro {
+  max-width: var(--measure);
+  margin-bottom: 3.5rem;
+}
+
+/* ---------- section labels ---------- */
+
+.year-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---------- index / archive lists ---------- */
+.index-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+.index-row {
+  border-bottom: 1px solid var(--rule);
+}
+.index-row:first-child {
+  border-top: 1px solid var(--rule);
+}
+.index-link {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  padding: 0.95rem 0;
+  text-decoration: none;
+  color: var(--ink);
+}
+.index-date {
+  flex: none;
+  width: 5.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  white-space: nowrap;
+  padding-top: 0.15rem;
+}
+.stream-cinema {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+}
+.index-title {
+  flex: 1;
+  font-family: var(--serif-display);
+  font-weight: 400;
+  font-size: 1.18rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  transition: color 0.16s ease;
+}
+.index-link:hover .index-title {
+  color: var(--accent);
+}
+.index-sub {
+  flex: none;
+  margin-left: auto;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.year-group {
+  margin-bottom: 2.75rem;
+}
+
+/* ---------- home section "doors" ---------- */
+.doors {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule);
+}
+.door {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+}
+.door-label {
+  font-family: var(--serif-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color 0.16s ease;
+}
+.door:hover .door-label {
+  color: var(--accent);
+}
+.door-desc {
+  max-width: var(--measure);
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* ---------- stream + page headers ---------- */
+.stream-head,
+.page-head {
+  margin-bottom: 2.75rem;
+  max-width: var(--measure);
+}
+.page-title {
+  font-family: var(--serif-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+}
+.page-lede {
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 0 0 1rem;
+}
+.stream-intro {
+  color: var(--ink-soft);
+}
+
+/* ---------- entry (single piece) ---------- */
+.entry {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+.entry-head {
+  margin-bottom: 2.25rem;
+}
+.entry-kicker {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.9rem;
+}
+.entry-kicker a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.dot {
+  margin: 0 0.5rem;
+  color: var(--rule);
+}
+.entry-title {
+  font-family: var(--serif-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5.5vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.entry-credits {
+  margin: 0.9rem 0 0;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+.film-title {
+  font-style: italic;
+}
+
+.entry-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+.back-link {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+}
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* ---------- prose ---------- */
+.prose {
+  max-width: var(--measure);
+}
+.prose > *:first-child {
+  margin-top: 0;
+}
+.prose p {
+  margin: 0 0 1.4rem;
+}
+.entry-body > p:first-of-type {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 0.16s ease;
+}
+.prose a:hover {
+  color: var(--accent);
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--serif-display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 2.5rem 0 0.85rem;
+}
+.prose h2 {
+  font-size: 1.6rem;
+}
+.prose h3 {
+  font-size: 1.3rem;
+}
+.prose h4 {
+  font-size: 1.1rem;
+}
+.prose blockquote {
+  margin: 1.8rem 0;
+  padding-left: 1.4rem;
+  border-left: 2px solid var(--accent);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.75rem 0;
+}
+.prose ul,
+.prose ol {
+  margin: 0 0 1.4rem;
+  padding-left: 1.3rem;
+}
+.prose li {
+  margin: 0.35rem 0;
+}
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--bg-2);
+  padding: 0.12em 0.38em;
+  border-radius: 3px;
+}
+.prose pre {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 1.6rem 0;
+}
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+.prose img {
+  border-radius: 3px;
+  margin: 1.6rem 0;
+}
+.prose figure {
+  margin: 1.8rem 0;
+}
+.prose figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.6rem;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6rem 0;
+  font-size: 0.96rem;
+}
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---------- footer ---------- */
+.site-foot {
+  flex-shrink: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: 2rem;
+}
+.foot-inner {
+  max-width: 65rem;
+  margin: 0 auto;
+  padding: 1.75rem var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.foot-note {
+  text-align: right;
+}
+.foot-note a {
+  color: var(--muted);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 32rem) {
+  body {
+    font-size: 1.08rem;
+  }
+  .index-link {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.8rem;
+  }
+  .index-date {
+    width: auto;
+    order: 1;
+  }
+  .index-title {
+    order: 3;
+    flex-basis: 100%;
+  }
+  .index-sub {
+    order: 4;
+    margin-left: 0;
+  }
+  .foot-inner {
+    flex-direction: column;
+  }
+  .foot-note {
+    text-align: left;
+  }
+}

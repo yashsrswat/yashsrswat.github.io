@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    
+    
+      <title>
+        Gradient descent is a flow we keep sampling badly
+        —
+        Yash Saraswat
+      </title>
+    
+    <meta name="description" content="Treating optimization as a continuous-time dynamical system, and what the discretization quietly costs us.">
+    <meta name="author" content="Yash Saraswat">
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>"
+    >
+
+    <!-- Theme: set before paint to avoid flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+Devanagari:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/assets/css/minimal.css">
+    <link rel="alternate" type="application/atom+xml" title="Yash Saraswat" href="/feed.xml">
+
+    
+      <script>
+        window.MathJax = {
+          tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+          options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] },
+        };
+      </script>
+      <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    
+  </head>
+
+  <body class="stream-research">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-head">
+      <a class="brand" href="/" aria-label="Yash Saraswat — home">
+        <span class="brand-deva" lang="hi">घर</span>
+        <span class="brand-roman">Ghar</span>
+      </a>
+      <nav class="site-nav">
+        <a href="/research/">Research</a>
+        <a href="/cinema/">Cinema</a>
+        <a href="/misc/">Misc</a>
+        <a href="/about/">About</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span aria-hidden="true">◐</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main" class="container"><article class="entry">
+  <header class="entry-head">
+    <p class="entry-kicker">
+      <a href="/research/">research</a>
+      <span class="dot">·</span><time datetime="2026-06-09T00:00:00+00:00">June 9, 2026</time>
+    </p>
+    <h1 class="entry-title">Gradient descent is a flow we keep sampling badly</h1>
+    
+    
+  </header>
+
+  <div class="prose entry-body"><p>A clean way to think about training is to forget the discrete updates entirely
+and imagine the parameters flowing continuously downhill:</p>
+
+<div class="kdmath">$$
+\dot{\theta}(t) = -\nabla L(\theta(t)).
+$$</div>
+
+<p>This <em>gradient flow</em> is the idealized object. Actual gradient descent is what
+you get when you sample it with a finite step size — a forward Euler
+discretization of the flow. Almost everything we call an “optimization trick”
+is, from this angle, a statement about how to integrate this ODE without the
+numerics betraying us.</p>
+
+<h2 id="momentum-is-a-second-order-system">Momentum is a second-order system</h2>
+
+<p>Plain gradient flow is first-order and overdamped — it slides straight to the
+nearest basin. Momentum changes the physics: it adds inertia, turning the
+dynamics into a damped second-order system, something like a heavy ball rolling
+through the loss landscape with friction. The familiar oscillation-then-settle
+behaviour isn’t an artifact; it’s exactly what an underdamped oscillator does.</p>
+
+<h2 id="where-the-discretization-bites">Where the discretization bites</h2>
+
+<p>The continuous flow is unconditionally well-behaved. The trouble is entirely in
+the sampling:</p>
+
+<ol>
+  <li><strong>Step size is a stability budget</strong>, not a speed dial. Too large and the Euler
+scheme overshoots and diverges — the same failure mode as integrating a stiff
+ODE too coarsely.</li>
+  <li><strong>Sharp minima are stiff regions.</strong> High curvature means fast local dynamics,
+which demands small steps, which is why curvature keeps showing up wherever
+learning rates are discussed.</li>
+</ol>
+
+<p>Seen this way, the learning-rate schedule is an adaptive integrator and the
+loss landscape is the vector field. I find this lens clarifying precisely
+because it refuses to treat optimization as a bag of tricks — it insists there’s
+a single continuous object underneath, and that our discrete algorithms are just
+better or worse approximations of it.</p>
+</div>
+
+  <footer class="entry-foot">
+    <a class="back-link" href="/research/">← back to research</a>
+  </footer>
+</article>
+</main>
+
+    <footer class="site-foot">
+      <div class="foot-inner">
+        <span
+          >© 2026
+          Yash Saraswat</span>
+        <span class="foot-note">Set in Fraunces &amp; Newsreader. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>, hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var cur = document.documentElement.getAttribute('data-theme');
+          var next = cur === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try {
+            localStorage.setItem('theme', next);
+          } catch (e) {}
+        });
+      })();
+    </script>
+  </body>
+</html>
