@@ -1,0 +1,28 @@
+---
+layout: default
+---
+{% assign site_name = site.first_name | append: ' ' | append: site.last_name %}
+
+<section class="masthead">
+  <h1 class="masthead-name">
+    {{ site_name -}}
+    <span class="masthead-deva" lang="hi">यश सारस्वत</span>
+  </h1>
+</section>
+
+<section class="intro prose">{{ content }}</section>
+
+<nav class="doors">
+  <a class="door" href="{{ '/research/' | relative_url }}">
+    <span class="door-label">Research</span>
+    <span class="door-desc">Notes written to understand — machine learning, dynamical systems, and what won't leave me alone.</span>
+  </a>
+  <a class="door" href="{{ '/cinema/' | relative_url }}">
+    <span class="door-label">Cinema</span>
+    <span class="door-desc">Reviews, impressions of movements and directors, and — in time — my own work.</span>
+  </a>
+  <a class="door" href="{{ '/misc/' | relative_url }}">
+    <span class="door-label">Misc</span>
+    <span class="door-desc">Everything else — travel, essays, and writing that fits no other shelf.</span>
+  </a>
+</nav>

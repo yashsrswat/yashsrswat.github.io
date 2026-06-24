@@ -2,21 +2,20 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
+title: Yash Saraswat # the website title
 first_name: Yash
 middle_name:
 last_name: Saraswat
 contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+  Reach me by email — that's where I read most carefully.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  Yash Saraswat — writing on machine learning, dynamical systems, and cinema.
 footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+  Set in Fraunces &amp; Newsreader. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>,
+  hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+keywords: machine learning, dynamical systems, cognitive science, cinema, film criticism, essays # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: ✦ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://yashsrswat.github.io # the base hostname & protocol for your site
 baseurl: "" # the subpath of your site, e.g. /blog/. Leave blank for root
@@ -154,16 +153,15 @@ newsletter:
 # -----------------------------------------------------------------------------
 
 collections:
-  books:
+  research:
     output: true
-  news:
-    defaults:
-      layout: post
+    permalink: /research/:title/
+  cinema:
     output: true
-  projects:
+    permalink: /cinema/:title/
+  misc:
     output: true
-  teachings:
-    output: true
+    permalink: /misc/:title/
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -174,6 +172,7 @@ markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
+  math_engine: null # leave $$ / $ delimiters intact for client-side MathJax
   syntax_highlighter_opts:
     css_class: "highlight"
     span:
@@ -185,6 +184,7 @@ kramdown:
 # Includes & excludes
 include: ["_pages", "_scripts"]
 exclude:
+  - assets/img/border/src/ # raw border screenshots, kept for reprocessing only
   - bin/
   - CONTRIBUTING.md
   - CUSTOMIZE.md
@@ -210,26 +210,8 @@ keep_files:
 
 # Plug-ins
 plugins:
-  - jekyll-3rd-party-libraries
-  - jekyll-archives-v2
-  - jekyll-cache-bust
-  - jekyll-email-protect
   - jekyll-feed
-  - jekyll-get-json
-  - jekyll-imagemagick
-  - jekyll-jupyter-notebook
-  - jekyll-link-attributes
-  - jekyll-minifier
-  - jekyll-paginate-v2
-  - jekyll-regex-replace
-  - jekyll/scholar
   - jekyll-sitemap
-  - jekyll-socials
-  - jekyll-tabs
-  - jekyll-terser
-  - jekyll-toc
-  - jekyll-twitter-plugin
-  - jemoji
 
 # Sitemap settings
 defaults:
@@ -237,6 +219,24 @@ defaults:
       path: "assets"
     values:
       sitemap: false
+  - scope:
+      path: ""
+      type: research
+    values:
+      layout: entry
+      stream: research
+  - scope:
+      path: ""
+      type: cinema
+    values:
+      layout: entry
+      stream: cinema
+  - scope:
+      path: ""
+      type: misc
+    values:
+      layout: entry
+      stream: misc
 
 sass:
   style: compressed
@@ -268,8 +268,6 @@ jekyll-archives:
       year: "/blog/:year/"
       tags: "/blog/:type/:name/"
       categories: "/blog/:type/:name/"
-  books:
-    enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
 
 display_tags: ["formatting", "images", "links", "math", "code", "blockquotes"] # these tags will be displayed on the front page of your blog
 display_categories: ["external-services"] # these categories will be displayed on the front page of your blog

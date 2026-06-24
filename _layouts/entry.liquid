@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<article class="entry">
+  <header class="entry-head">
+    <p class="entry-kicker">
+      <a href="{{ '/' | append: page.stream | append: '/' | relative_url }}">{{ page.stream }}</a>
+      {% if page.date -%}
+        <span class="dot">·</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+      {%- endif %}
+    </p>
+    <h1 class="entry-title">{{ page.title }}</h1>
+    {% if page.stream == 'cinema' and page.film %}
+      <p class="entry-credits">
+        <span class="film-title">{{ page.film }}</span>
+        {% if page.director -%}
+          <span class="dot">·</span>dir. {{ page.director -}}
+        {%- endif %}
+        {% if page.year -%}
+          <span class="dot">·</span>{{ page.year -}}
+        {%- endif %}
+      </p>
+    {% endif %}
+    {% if page.subtitle %}
+      <p class="entry-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+  </header>
+
+  <div class="prose entry-body">{{ content }}</div>
+
+  <footer class="entry-foot">
+    <a class="back-link" href="{{ '/' | append: page.stream | append: '/' | relative_url }}">← back to {{ page.stream }}</a>
+  </footer>
+</article>

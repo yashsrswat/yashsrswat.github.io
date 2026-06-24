@@ -1,31 +1,24 @@
 ---
-layout: about
-title: about
-permalink: /
-subtitle: Graduate Student at Institute of Cognitive Science, Osnabrück University
-
-profile:
-  align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
-  more_info:
-
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
-
-announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
-
-latest_posts:
-  enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+layout: page
+permalink: /about/
+title: About
+description: Graduate student in Cognitive Science at Osnabrück University.
 ---
 
-I am studying Cognitive Science, specializing in Artificial Cognition at Osnabrück University. Previously I obtained my Bachelor's in Chemical Engineering from Indian Institute of Technology Kharagpur, where I wrote my thesis with the Computer Science and Engineering Department.
+I'm studying Cognitive Science, specializing in Artificial Cognition, at
+Osnabrück University. Before that I read Chemical Engineering at IIT Kharagpur,
+where I wrote my thesis with the Computer Science and Engineering department.
 
-I am broadly interested in working towards a more Dynamical Systems understanding of Machine Learning. Having worked on Reinforcement Learning projects extensively in the past, where Dynamics and Control are more intuitive, I wonder how these concepts can be carried over to other fields of Machine Learning. Recent advances in State Space Modelling that study latent dynamics also excite me.
+I'm broadly interested in a more **dynamical-systems** understanding of machine
+learning. Having spent a lot of time on reinforcement learning — where dynamics
+and control feel intuitive — I keep wondering how those ideas carry over to the
+rest of the field. Recent work on state-space models and latent dynamics is the
+kind of thing that pulls me in.
 
-I hope to explore and share more of my scientific journey on this page as I go through my Graduate studies.
+Away from research I watch a lot of film, which is the other half of this site.
+I think the two habits are related: both are about paying close, patient
+attention to how something actually moves.
+
+You can find me on
+[GitHub](https://github.com/yashsrswat),
+or reach me by [email](mailto:yashsaraswat3701@gmail.com).
